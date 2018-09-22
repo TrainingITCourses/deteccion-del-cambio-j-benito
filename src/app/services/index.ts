@@ -1,1 +1,1 @@
-export { LaunchesService } from './launches.service';
+export * from './launches';

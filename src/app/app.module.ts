@@ -2,17 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { LaunchesService } from './services/launches.service';
+import * as service from './services';
+import * as component from './components';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    component.LaunchesSearchComponent,
+    component.LaunchesCriteriaComponent,
+    component.LaunchesCounterComponent,
+    component.LaunchesListComponent,
+    component.CriteriaTypeComponent,
+    component.CriterionResultsComponent
   ],
   imports: [
     BrowserModule
   ],
   providers: [
-    LaunchesService
+    service.LaunchesService
   ],
   bootstrap: [AppComponent]
 })
