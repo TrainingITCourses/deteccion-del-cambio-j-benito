@@ -2,3 +2,4 @@
 
 Primer ejercicio del curso de Aplicaciones de Alto redimiento con Angular 6.
 
+Javier Benito Díaz
