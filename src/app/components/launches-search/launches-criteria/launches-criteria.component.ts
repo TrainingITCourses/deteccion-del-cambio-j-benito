@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LaunchesService } from 'app/services';
 
 @Component({
   selector: 'app-launches-criteria',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LaunchesCriteriaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private asdf: LaunchesService) { }
 
   ngOnInit() {
+    console.log('results: ');
+    this.asdf.getAgencies();
   }
 
 }

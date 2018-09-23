@@ -1,1 +1,1 @@
-export * from './criterion-results.component';
+export { CriterionResultsComponent } from './criterion-results.component';

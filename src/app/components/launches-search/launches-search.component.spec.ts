@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LaunchesSearchComponent } from './launches-search.component';
+import * as include from 'app/components';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LaunchesSearchComponent', () => {
   let component: LaunchesSearchComponent;
@@ -8,7 +10,17 @@ describe('LaunchesSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LaunchesSearchComponent ]
+      declarations: [
+        LaunchesSearchComponent,
+        include.LaunchesCriteriaComponent,
+        include.LaunchesCounterComponent,
+        include.LaunchesListComponent,
+        include.CriterionTypesComponent,
+        include.CriterionResultsComponent,
+      ],
+      imports: [
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));
@@ -22,4 +34,14 @@ describe('LaunchesSearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render title in a h1 tag', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Búsqueda de lanzamientos');
+  }));
+
+  it('should render title in a h2 tag', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Resultado de la búsqueda');
+  }));
 });

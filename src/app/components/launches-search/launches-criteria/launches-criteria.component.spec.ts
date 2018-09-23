@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LaunchesCriteriaComponent } from './launches-criteria.component';
+import { CriterionResultsComponent } from './criterion-results';
+import { CriterionTypesComponent } from './criterion-types';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LaunchesCriteriaComponent', () => {
   let component: LaunchesCriteriaComponent;
@@ -8,7 +11,14 @@ describe('LaunchesCriteriaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LaunchesCriteriaComponent ]
+      declarations: [
+        LaunchesCriteriaComponent,
+        CriterionResultsComponent,
+        CriterionTypesComponent
+      ],
+      imports: [
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));
@@ -22,4 +32,9 @@ describe('LaunchesCriteriaComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render title in a h3 tag', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h3').textContent).toContain('Selecciona el tipo de criterio');
+  }));
 });

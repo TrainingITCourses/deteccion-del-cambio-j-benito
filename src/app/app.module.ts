@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import * as service from './services';
-import * as component from './components';
+// import * as service from 'app/services';
+import * as component from 'app/components';
 
 @NgModule({
   declarations: [
@@ -12,14 +13,15 @@ import * as component from './components';
     component.LaunchesCriteriaComponent,
     component.LaunchesCounterComponent,
     component.LaunchesListComponent,
-    component.CriteriaTypeComponent,
+    component.CriterionTypesComponent,
     component.CriterionResultsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
-    service.LaunchesService
+    // service.LaunchesService
   ],
   bootstrap: [AppComponent]
 })
