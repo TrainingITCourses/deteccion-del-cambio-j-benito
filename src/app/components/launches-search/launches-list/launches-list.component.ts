@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-launches-list',
   templateUrl: './launches-list.component.html',
   styleUrls: ['./launches-list.component.scss']
 })
 export class LaunchesListComponent implements OnInit {
+  @Input() public filteredLaunches: any[];
 
   constructor() { }
 

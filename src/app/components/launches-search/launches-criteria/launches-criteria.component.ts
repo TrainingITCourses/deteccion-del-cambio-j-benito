@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LaunchesService } from 'app/services';
-import { CriterionType, IdValueType } from 'app/models';
+import { CriterionType, IdValueType, Criterion } from 'app/models';
 
 @Component({
   selector: 'app-launches-criteria',
@@ -8,7 +8,9 @@ import { CriterionType, IdValueType } from 'app/models';
   styleUrls: ['./launches-criteria.component.scss']
 })
 export class LaunchesCriteriaComponent implements OnInit {
-  private criterionType: CriterionType;
+  @Output() public launchCriterionChange = new EventEmitter<Criterion>();
+
+  public criterionType: CriterionType;
   public criterionResults: IdValueType[];
 
   constructor(private launchesService: LaunchesService) { }
@@ -50,8 +52,11 @@ export class LaunchesCriteriaComponent implements OnInit {
     this.criterionResults = criterionResults; // Ref. changed
   }
 
-  onCriterionResultChange(criterionResultId: number) {
-    console.log('resultCANGE', criterionResultId);
+  onCriterionResultChange(criterionResultId: string) {
+    this.launchCriterionChange.emit({
+      type: this.criterionType,
+      id: Number(criterionResultId)
+    });
   }
 
 }

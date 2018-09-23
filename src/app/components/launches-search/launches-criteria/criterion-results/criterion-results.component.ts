@@ -14,7 +14,7 @@ import { CriterionType, IdValueType } from 'app/models';
 })
 export class CriterionResultsComponent implements OnInit {
   @Input() public criterionResults: IdValueType[];
-  @Output() public criterionResultChange = new EventEmitter<number>();
+  @Output() public criterionResultChange = new EventEmitter<string>();
 
   constructor() { }
 

@@ -5,6 +5,11 @@ import { Component,
          ChangeDetectionStrategy } from '@angular/core';
 import { Criterion, CriterionType } from 'app/models';
 
+class CriterionName {
+  type: CriterionType;
+  name: string;
+}
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-criterion-types',
@@ -14,7 +19,7 @@ import { Criterion, CriterionType } from 'app/models';
 export class CriterionTypesComponent implements OnInit {
   @Output() public criterionTypeChange = new EventEmitter<CriterionType>();
 
-  public criteria: Criterion[];
+  public criteria: CriterionName[];
   public criterionTypeSelected: string;
 
   constructor() { }
@@ -23,19 +28,19 @@ export class CriterionTypesComponent implements OnInit {
     this.criteria = this.initCriteria();
   }
 
-  private initCriteria(): Criterion[] {
+  private initCriteria(): CriterionName[] {
     return [
       {
         type: 'status',
-        value: 'Estado'
+        name: 'Estado'
       },
       {
         type: 'agencies',
-        value: 'Agencia'
+        name: 'Agencia'
       },
       {
         type: 'types',
-        value: 'Tipo'
+        name: 'Tipo'
       }
     ];
   }

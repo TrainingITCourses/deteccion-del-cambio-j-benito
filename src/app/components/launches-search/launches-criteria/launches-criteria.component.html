@@ -3,6 +3,7 @@
 <app-criterion-types (criterionTypeChange)="onCriterionTypeChange($event)">
 </app-criterion-types>
 
-<app-criterion-results [criterionResults]="criterionResults"
-                       (criterionResultChange)="onCriterionResultChange($event)">
+<app-criterion-results *ngIf="criterionType"
+                      [criterionResults]="criterionResults"
+                      (criterionResultChange)="onCriterionResultChange($event)">
 </app-criterion-results>
