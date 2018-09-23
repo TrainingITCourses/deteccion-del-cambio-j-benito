@@ -1,4 +1,4 @@
-<select (change)="criterionChange.emit($event.target.value)">
+<select (change)="criterionTypeChange.emit($event.target.value)">
   <option *ngFor="let criterion of criteria" [value]="criterion.type">
     {{ criterion.value }}
   </option>

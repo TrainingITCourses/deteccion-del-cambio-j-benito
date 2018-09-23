@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LaunchesService } from 'app/services';
-import { CriterionType } from 'app/models';
-
-class SelectValue {
-  id: number;
-  value: string;
-}
+import { CriterionType, IdValueType } from 'app/models';
 
 @Component({
   selector: 'app-launches-criteria',
@@ -13,29 +8,50 @@ class SelectValue {
   styleUrls: ['./launches-criteria.component.scss']
 })
 export class LaunchesCriteriaComponent implements OnInit {
-
-  public criterionResults: SelectValue[];
+  private criterionType: CriterionType;
+  public criterionResults: IdValueType[];
 
   constructor(private launchesService: LaunchesService) { }
 
   ngOnInit() {
   }
 
-  onCriterionChange(criterionType: CriterionType) {
-    // TODO: Continue
-    console.log('lol', criterionType);
-    switch(criterionType) {
+  onCriterionTypeChange(criterionType: CriterionType) {
+    this.criterionType = criterionType;
+    switch (criterionType) {
       case 'agencies':
         this.launchesService.getAgencies().subscribe((agencies) => {
-          console.log('agencies', agencies);
-        })
+          this.assignCriterionResults(agencies);
+        });
         break;
       case 'types':
+        this.launchesService.getMissionTypes().subscribe((missionTypes) => {
+          this.assignCriterionResults(missionTypes);
+        });
         break;
       case 'status':
+        this.launchesService.getStatusTypes().subscribe((statusTypes) => {
+          this.assignCriterionResults(statusTypes);
+        });
         break;
       default:
-        throw new Error('criterionType is not supported :S')
+        throw new Error('criterionType is not supported :S');
+    }
   }
+
+  private assignCriterionResults(results: any[]): void {
+    const criterionResults = [];
+    results.forEach((elem) => {
+      criterionResults.push({
+        id: elem.id,
+        value: elem.name
+      });
+    });
+    this.criterionResults = criterionResults; // Ref. changed
   }
+
+  onCriterionResultChange(criterionResultId: number) {
+    console.log('resultCANGE', criterionResultId);
+  }
+
 }
