@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CriterionType, Criterion } from 'app/models';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Criterion } from 'app/models';
 import { LaunchesService } from 'app/services';
+// import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-launches-search',
@@ -10,6 +11,7 @@ import { LaunchesService } from 'app/services';
 export class LaunchesSearchComponent implements OnInit {
   private launches: any[];
   public filteredLaunches: any[] = [];
+  // public filteredLaunches$: BehaviorSubject<any[]> = new BehaviorSubject(this.filteredLaunches);
 
   constructor(private launchesService: LaunchesService) { }
 
@@ -20,16 +22,32 @@ export class LaunchesSearchComponent implements OnInit {
   }
 
   onLaunchCriterionChange(criterion: Criterion) {
-    console.log('criterion', criterion);
+
+    /* Filter by status */
     if (criterion.type === 'status') {
       this.filteredLaunches = this.launches.filter(
         launch => launch.status === criterion.id
       );
+
+    /* Filter by agencies */
+    } else if (criterion.type === 'agencies') {
+      this.filteredLaunches = this.launches.filter(
+        launch => (
+          (launch.rocket.agencies ? launch.rocket.agencies.some(agency => agency.id === criterion.id) : false) ||
+          (launch.missions ? launch.missions.some(mission => (
+            mission.agencies ? mission.agencies.some(agency => agency.id === criterion.id) : false)) : false) ||
+          (launch.location.pads ? launch.location.pads.some(pad => (
+            pad.agencies ? pad.agencies.some(agency => agency.id === criterion.id) : false)) : false)
+        )
+      );
+
+    /* Filter by types */
     } else if (criterion.type === 'types') {
       this.filteredLaunches = this.launches.filter(
         launch => launch.missions.some(mission => mission.type === criterion.id)
       );
     }
-    console.log('filtered', this.filteredLaunches)
+
+    // this.filteredLaunches$.next(this.filteredLaunches);
   }
 }

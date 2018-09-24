@@ -1,9 +1,8 @@
 import { Component,
          OnInit,
          Output,
-         EventEmitter,
-         ChangeDetectionStrategy } from '@angular/core';
-import { Criterion, CriterionType } from 'app/models';
+         EventEmitter } from '@angular/core';
+import { CriterionType } from 'app/models';
 
 class CriterionName {
   type: CriterionType;
@@ -11,7 +10,6 @@ class CriterionName {
 }
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-criterion-types',
   templateUrl: './criterion-types.component.html',
   styleUrls: ['./criterion-types.component.scss']

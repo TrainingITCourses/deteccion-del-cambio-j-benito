@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LaunchesService } from 'app/services';
 import { CriterionType, IdValueType, Criterion } from 'app/models';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-launches-criteria',
@@ -11,7 +12,8 @@ export class LaunchesCriteriaComponent implements OnInit {
   @Output() public launchCriterionChange = new EventEmitter<Criterion>();
 
   public criterionType: CriterionType;
-  public criterionResults: IdValueType[];
+  // public criterionResults: IdValueType[] = [];
+  public criterionResults$: BehaviorSubject<IdValueType[]> = new BehaviorSubject([]);
 
   constructor(private launchesService: LaunchesService) { }
 
@@ -49,7 +51,8 @@ export class LaunchesCriteriaComponent implements OnInit {
         value: elem.name
       });
     });
-    this.criterionResults = criterionResults; // Ref. changed
+    // this.criterionResults = criterionResults.slice(); // Ref. changed
+    this.criterionResults$.next(criterionResults);
   }
 
   onCriterionResultChange(criterionResultId: string) {

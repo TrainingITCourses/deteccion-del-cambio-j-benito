@@ -27,8 +27,8 @@ export class LaunchesService {
       .pipe(map((res: any) => res.types))
 
   public getLaunches = (): Observable<any[]> =>
-  this.http
-    .get(environment.url + '/assets/launchlibrary.json')
-    .pipe(map((res: any) => res.launches))
+    this.http
+      .get(environment.url + '/assets/launchlibrary.json')
+      .pipe(map((res: any) => res.launches))
 
 }

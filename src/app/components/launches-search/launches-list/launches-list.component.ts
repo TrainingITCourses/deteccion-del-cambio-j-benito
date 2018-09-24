@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-launches-list',
   templateUrl: './launches-list.component.html',
   styleUrls: ['./launches-list.component.scss']

@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LaunchesSearchComponent } from './launches-search.component';
 import * as include from 'app/components';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LaunchesSearchComponent', () => {
   let component: LaunchesSearchComponent;
@@ -19,7 +20,8 @@ describe('LaunchesSearchComponent', () => {
         include.CriterionResultsComponent,
       ],
       imports: [
-        HttpClientModule
+        HttpClientModule,
+        HttpClientTestingModule
       ]
     })
     .compileComponents();
