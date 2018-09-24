@@ -51,7 +51,6 @@ export class LaunchesCriteriaComponent implements OnInit {
         value: elem.name
       });
     });
-    // this.criterionResults = criterionResults.slice(); // Ref. changed
     this.criterionResults$.next(criterionResults);
   }
 

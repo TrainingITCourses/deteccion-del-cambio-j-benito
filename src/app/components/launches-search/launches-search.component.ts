@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Criterion } from 'app/models';
 import { LaunchesService } from 'app/services';
 // import { BehaviorSubject } from 'rxjs';
