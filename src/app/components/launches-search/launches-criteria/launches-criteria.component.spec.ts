@@ -4,6 +4,7 @@ import { LaunchesCriteriaComponent } from './launches-criteria.component';
 import { CriterionResultsComponent } from './criterion-results';
 import { CriterionTypesComponent } from './criterion-types';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 describe('LaunchesCriteriaComponent', () => {
   let component: LaunchesCriteriaComponent;
@@ -17,7 +18,8 @@ describe('LaunchesCriteriaComponent', () => {
         CriterionTypesComponent
       ],
       imports: [
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
       ]
     })
     .compileComponents();

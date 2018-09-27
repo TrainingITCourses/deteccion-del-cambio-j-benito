@@ -4,6 +4,7 @@ import { LaunchesSearchComponent } from './launches-search.component';
 import * as include from 'app/components';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('LaunchesSearchComponent', () => {
   let component: LaunchesSearchComponent;
@@ -21,7 +22,8 @@ describe('LaunchesSearchComponent', () => {
       ],
       imports: [
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        FormsModule
       ]
     })
     .compileComponents();
