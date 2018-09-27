@@ -2,7 +2,8 @@ import { Component,
          OnInit,
          Input,
          Output,
-         EventEmitter } from '@angular/core';
+         EventEmitter,
+         OnChanges} from '@angular/core';
 import { IdValueType } from 'app/models';
 
 @Component({
@@ -10,13 +11,15 @@ import { IdValueType } from 'app/models';
   templateUrl: './criterion-results.component.html',
   styleUrls: ['./criterion-results.component.scss']
 })
-export class CriterionResultsComponent implements OnInit {
+export class CriterionResultsComponent implements OnChanges {
   @Input() public criterionResults: IdValueType[];
   @Output() public criterionResultChange = new EventEmitter<string>();
+  public selectValue: string;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.selectValue = '';
   }
 
 }

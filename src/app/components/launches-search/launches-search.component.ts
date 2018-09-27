@@ -23,6 +23,12 @@ export class LaunchesSearchComponent implements OnInit {
 
   onLaunchCriterionChange(criterion: Criterion) {
 
+    /* If not criterion, clean list */
+    if (!criterion) {
+      this.filteredLaunches = [];
+      return;
+    }
+
     /* Filter by status */
     if (criterion.type === 'status') {
       this.filteredLaunches = this.launches.filter(

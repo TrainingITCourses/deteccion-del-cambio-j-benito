@@ -41,6 +41,7 @@ export class LaunchesCriteriaComponent implements OnInit {
       default:
         throw new Error('criterionType is not supported :S');
     }
+    this.launchCriterionChange.emit();
   }
 
   private assignCriterionResults(results: any[]): void {
