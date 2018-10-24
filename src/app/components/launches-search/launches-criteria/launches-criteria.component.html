@@ -4,6 +4,6 @@
 </app-criterion-types>
 
 <app-criterion-results [hidden]="!criterionType"
-                       [criterionResults]="criterionResults$ | async"
+                       [criterionResults]="criterionResults"
                        (criterionResultChange)="onCriterionResultChange($event)">
 </app-criterion-results>

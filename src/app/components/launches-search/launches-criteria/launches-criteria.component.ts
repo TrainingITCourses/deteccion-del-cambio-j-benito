@@ -1,9 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { LaunchesService } from 'app/services';
 import { CriterionType, IdValueType, Criterion } from 'app/models';
 import { BehaviorSubject } from 'rxjs';
+import { detectChanges } from '@angular/core/src/render3';
 
 @Component({
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-launches-criteria',
   templateUrl: './launches-criteria.component.html',
   styleUrls: ['./launches-criteria.component.scss']
@@ -12,10 +14,11 @@ export class LaunchesCriteriaComponent implements OnInit {
   @Output() public launchCriterionChange = new EventEmitter<Criterion>();
 
   public criterionType: CriterionType;
-  // public criterionResults: IdValueType[] = [];
-  public criterionResults$: BehaviorSubject<IdValueType[]> = new BehaviorSubject([]);
+  public criterionResults: IdValueType[] = [];
+  // public criterionResults$: BehaviorSubject<IdValueType[]> = new BehaviorSubject([]);
 
-  constructor(private launchesService: LaunchesService) { }
+  constructor(private launchesService: LaunchesService,
+              private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
@@ -52,7 +55,7 @@ export class LaunchesCriteriaComponent implements OnInit {
         value: elem.name
       });
     });
-    this.criterionResults$.next(criterionResults);
+    this.criterionResults = criterionResults;
   }
 
   onCriterionResultChange(criterionResultId: string) {
